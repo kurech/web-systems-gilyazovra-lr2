@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Электронный бланк заказа</title>
+	<style>
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+		table, th, td {
+			border: 1px solid #ccc;
+		}
+		th, td {
+			padding: 10px;
+			text-align: left;
+		}
+		button {
+			background-color: #ff7f27;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<h2>Электронный бланк заказа</h2>
+	<table id="cart">
+		<thead>
+			<tr>
+				<th>Товар</th>
+				<th>Цена</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+	<p>Общая сумма: <span id="total">0</span> руб.</p>
+	<button onclick="pay()">Оплатить</button>
+
+	<script>
+		function loadCart() {
+			let cart = JSON.parse(localStorage.getItem('cart')) || [];
+			let tbody = document.querySelector("#cart tbody");
+			let total = 0;
+
+			tbody.innerHTML = "";
+			cart.forEach(item => {
+				let row = document.createElement("tr");
+				row.innerHTML = `<td>${item.name}</td><td>${item.price} руб.</td>`;
+				tbody.appendChild(row);
+				total += item.price;
+			});
+
+			document.getElementById("total").textContent = total;
+		}
+
+		function pay() {
+			localStorage.removeItem('cart');
+			alert("Оплата прошла успешно! Корзина очищена.");
+			loadCart();
+		}
+		
+		loadCart();
+	</script>
+</body>
+</html>

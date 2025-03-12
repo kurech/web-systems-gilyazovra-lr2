@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Прайс-лист</title>
+	<style>
+		.product {
+			border: 1px solid #ccc;
+			padding: 10px;
+   margin: 10px;
+   text-align: center;
+   width: 200px;
+   display: inline-block;
+		}
+		.product img {
+			max-width: 100%;
+   height: auto;
+		}
+  .product button {
+			background-color: #ff7f27;
+   color: white;
+   border: none;
+   padding: 5px 10px;
+   cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<h2>Прайс-лист</h2>
+	<div>
+		<div class="product">
+			<img src="84421215.webp" alt="Ресанта САИ-220ПРО">
+			<p>Сварочный аппарат инверторный Ресанта САИ-220ПРО, 220 А, до 6 мм - 9590 руб.</p>
+			<button onclick="addToCart('Ресанта САИ-220ПРО', 9590)">Добавить в корзину</button>
+		</div>
+		<div class="product">
+			<img src="84838297.webp" alt="Ресанта САИ-190ЛМ">
+			<p>Сварочный аппарат инверторный Ресанта САИ-190ЛМ, 190 А, до 5 мм - 7690 руб.</p>
+			<button onclick="addToCart('Ресанта САИ-190ЛМ', 7690)">Добавить в корзину</button>
+		</div>
+		<div class="product">
+			<img src="66e0b367bd030e54336164241d2db965.webp" alt="Ремонт сварочного аппарата">
+			<p>Ремонт сварочного аппарата Ресанта - 20000 руб.</p>
+			<button onclick="addToCart('Ремонт сварочного аппарата Ресанта', 20000)">Добавить в корзину</button>
+		</div>
+	</div>
+
+	<script>
+		function addToCart(name, price) {
+			let cart = JSON.parse(localStorage.getItem('cart')) || [];
+			cart.push({ name, price });
+			localStorage.setItem('cart', JSON.stringify(cart));
+			alert(`${name} добавлен в корзину!`);
+		}
+	</script>
+</body>
+</html>
